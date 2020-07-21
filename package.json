@@ -1,0 +1,22 @@
+{
+  "name": "programme",
+  "version": "1.0.0",
+  "description": "programme sk8 site",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fazulk/programme.git"
+  },
+  "keywords": [
+    "estore"
+  ],
+  "author": "Jeff Fasulkey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fazulk/programme/issues"
+  },
+  "homepage": "https://github.com/fazulk/programme#readme"
+}
