@@ -7,9 +7,12 @@
       <nav class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/about/">About</g-link>
+        <g-link class="nav__link" to="/specials">Specials</g-link>
+        <g-link class="nav__link" to="/p/">Private</g-link>
+        <span v-if="isLoggedIn" class="nav__link" @click="logout">Logout</span>
       </nav>
     </header>
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -20,12 +23,32 @@ query {
   }
 }
 </static-query>
+<script>
+export default {
+  metaInfo: {
+    title: "Profile",
+  },
+  created() {},
+
+  computed: {
+    isLoggedIn() {
+      return this.$auth.isAuthenticated();
+    },
+  },
+  methods: {
+    logout() {
+      this.$auth.logout();
+    },
+  },
+};
+</script>
 
 <style>
 body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
   line-height: 1.5;
 }
 

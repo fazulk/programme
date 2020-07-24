@@ -1,0 +1,23 @@
+{
+  "name": "programme-api-routes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeff Fasulkey",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-koa": "^2.16.0",
+    "graphql": "^15.3.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
