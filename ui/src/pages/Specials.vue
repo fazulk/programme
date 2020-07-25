@@ -1,12 +1,16 @@
 <template>
   <Layout>
     <div class="container max-w-none overflow-hidden">
-      <div class="mx-auto my-10 w-64 text-center uppercase font-bold">
+      <h1>{{ status }}</h1>
+      <div
+        @click="one"
+        class="mx-auto my-10 w-64 text-center uppercase font-bold"
+      >
         Hello {{ user.given_name || user.name }}
       </div>
       <table class="table-auto mx-auto mb-4">
         <tbody>
-          <tr>
+          <tr @click="two">
             <td class="border px-4 py-2">Picture</td>
             <td class="border px-4 py-2"><img :src="user.picture" /></td>
           </tr>
@@ -39,27 +43,47 @@
   </Layout>
 </template>
 <script>
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Profile",
   },
-  created() {},
+
+  data() {
+    return {
+      user: {},
+      status: null,
+    };
+  },
+  methods: {
+    async one() {
+      try {
+        const results = await axios.get("http://localhost:3000/1");
+
+        this.status = results.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async two() {
+      try {
+        const results = await axios.get("http://localhost:3000/2");
+
+        this.status = results.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    logout() {
+      this.$auth.logout();
+    },
+  },
   mounted() {
-    // redirect to login if not authenticated
     if (!this.$auth.isAuthenticated()) {
       this.$auth.login();
     }
     this.user = this.$auth.user || {};
-  },
-  data() {
-    return {
-      user: {},
-    };
-  },
-  methods: {
-    logout() {
-      this.$auth.logout();
-    },
   },
 };
 </script>

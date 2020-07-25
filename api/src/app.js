@@ -1,17 +1,24 @@
-import koaBody from "koa-bodyparser";
-import { graphqlKoa } from "apollo-server-koa";
+import Koa from "koa";
+import Router from "@koa/router";
+import cors from "@koa/cors";
 
-const app = new koa();
-const router = new koaRouter();
-const PORT = 3000;
+const app = new Koa();
+const router = new Router();
 
-import schema from "./schema/index.js";
-// koaBody is needed just for POST.
-app.use(koaBody());
+router.get(`/1`, (ctx, next) => {
+  ctx.body = `first`;
 
-router.post("/graphql", graphqlKoa({ schema }));
-router.get("/graphql", graphqlKoa({ schema }));
+  // ctx.router available
+});
 
-app.use(router.routes());
-app.use(router.allowedMethods());
-app.listen(PORT);
+router.get(`/2`, (ctx, next) => {
+  ctx.body = `second`;
+  // ctx.router available
+});
+
+app.use(cors());
+app.use(router.routes()).use(router.allowedMethods());
+
+app.listen({ port: 3000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:3000`)
+);

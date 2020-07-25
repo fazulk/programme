@@ -11,11 +11,11 @@
   "author": "Jeff Fasulkey",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-koa": "^2.16.0",
-    "graphql": "^15.3.0",
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^9.3.1",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
-    "koa-router": "^9.1.0"
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
