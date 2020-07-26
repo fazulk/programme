@@ -36,9 +36,6 @@
           </tr>
         </tbody>
       </table>
-      <div class="text-center mb-4">
-        <button @click.prevent="logout">Logout</button>
-      </div>
     </div>
   </Layout>
 </template>
@@ -46,7 +43,7 @@
 import axios from "axios";
 export default {
   metaInfo: {
-    title: "Profile",
+    title: "Specals",
   },
 
   data() {
@@ -73,10 +70,6 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    },
-
-    logout() {
-      this.$auth.logout();
     },
   },
   mounted() {

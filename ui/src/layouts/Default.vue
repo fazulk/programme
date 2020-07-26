@@ -7,8 +7,7 @@
       <nav class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/about/">About</g-link>
-        <g-link class="nav__link" to="/specials">Specials</g-link>
-        <g-link class="nav__link" to="/p/">Private</g-link>
+        <g-link class="nav__link" to="/specials/">Specials</g-link>
         <span v-if="isLoggedIn" class="nav__link" @click="logout">Logout</span>
       </nav>
     </header>
@@ -23,19 +22,32 @@ query {
   }
 }
 </static-query>
+
 <script>
 export default {
-  metaInfo: {
-    title: "Profile",
+  mounted() {
+    this.theme = localStorage.getItem("theme") || "theme-light";
+    this.isAuthenticated = this.$auth.isAuthenticated();
   },
-  created() {},
-
   computed: {
     isLoggedIn() {
-      return this.$auth.isAuthenticated();
+      return this.isAuthenticated;
     },
   },
+  data() {
+    return {
+      isOpen: false,
+      theme: "",
+      isAuthenticated: false,
+    };
+  },
   methods: {
+    toggle() {
+      this.isOpen = !this.isOpen;
+    },
+    updateTheme(theme) {
+      this.theme = theme;
+    },
     logout() {
       this.$auth.logout();
     },
