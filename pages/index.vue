@@ -1,6 +1,6 @@
 <script setup>
-const { find } = useStrapi4();
-const response = await find("products");
+// const { find } = useStrapi4();
+// const response = await find("products");
 const graphql = useStrapiGraphQL();
 
 const products = await graphql(`
