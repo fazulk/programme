@@ -1,5 +1,5 @@
 <script setup>
-// const { data } = await useAsyncData("count", () => $fetch("/api/counter"));
+const { data } = await useAsyncData("count", () => $fetch("/api/counter"));
 const graphql = useStrapiGraphQL();
 const { data: products } = await useAsyncData("products", () =>
   graphql(`
@@ -19,7 +19,7 @@ const { data: products } = await useAsyncData("products", () =>
 
 <template>
   <div>
-    <!-- counter: {{ data }} -->
+    counter: {{ data }}
     <li v-for="(r, i) in products.data.products.data">
       {{ r.attributes.Name }}
     </li>
