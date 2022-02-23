@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "programme_ui",
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
