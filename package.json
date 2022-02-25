@@ -7,7 +7,8 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "nuxt3": "latest"    
+    "cssnano": "^5.0.17",
+    "nuxt3": "latest"
   },
   "dependencies": {
     "@nuxtjs/strapi": "^1.3.0"

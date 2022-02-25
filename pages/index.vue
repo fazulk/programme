@@ -1,5 +1,4 @@
 <script setup>
-const { data } = await useAsyncData("count", () => $fetch("/api/counter"));
 const graphql = useStrapiGraphQL();
 const { data: products } = await useAsyncData("products", () =>
   graphql(`
@@ -15,6 +14,7 @@ const { data: products } = await useAsyncData("products", () =>
     }
   `)
 );
+const { data } = await useAsyncData("count", () => $fetch("/api/counter"));
 </script>
 
 <template>
