@@ -15,15 +15,17 @@
 //   `)
 // );
 
-const { data } = await useAsyncData("count", () => $fetch("/api/counter"));
-const { data: counter2 } = await useAsyncData("count", () =>
+const { data: counter1 } = await useAsyncData("counter1", () =>
+  $fetch("/api/counter")
+);
+const { data: counter2 } = await useAsyncData("counter2", () =>
   $fetch("/api/counter2")
 );
 </script>
 
 <template>
   <div>
-    counter1: {{ data }}<br />
+    counter1: {{ counter1 }}<br />
     counter2: {{ counter2 }}
     <!-- <li v-for="(r, i) in products.data.products.data">
       {{ r.attributes.Name }}
