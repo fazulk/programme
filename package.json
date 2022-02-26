@@ -7,7 +7,6 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "cssnano": "^5.0.17",
     "nuxt3": "latest"
   },
   "dependencies": {
