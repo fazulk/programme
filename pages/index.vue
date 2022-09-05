@@ -41,7 +41,7 @@ const { data: counter1 } = await useAsyncData('counter1', () =>
     <div>
       counter: {{ counter1 }}<br />
       <ol>
-        <li v-for="(r, i) in products.data.products.data" :key="i">
+        <li v-for="(r, i) in products?.data.products.data" :key="i">
           {{ r.attributes.Name }} : {{ r.attributes.Price }}
         </li>
       </ol>
