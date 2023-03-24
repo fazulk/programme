@@ -28,25 +28,28 @@ const { data: products, refresh } = useAsyncData('products', () =>
         }
       }
     }
-  `)
+  `),
 )
 
 const { data: counter1 } = await useAsyncData('counter1', () =>
-  $fetch('/api/counter')
+  $fetch('/api/counter'),
 )
 </script>
 
 <template>
   <div>
     <div>
-      counter: {{ counter1 }}<br />
+      Updated Nuxt!<br>
+      <span class="text-xl">counter: {{ counter1 }}</span><br>
       <ol>
         <li v-for="(r, i) in products?.data.products.data" :key="i">
-          {{ r.attributes.Name }} : {{ r.attributes.Price }}
+          {{ r.attributes.Name }} : <span class="font-bold">{{ r.attributes.Price }}</span>
         </li>
       </ol>
     </div>
-    <br />
-    <button @click.prevent="refresh()">Refresh</button>
+    <br>
+    <button @click.prevent="refresh()">
+      Refresh
+    </button>
   </div>
 </template>
