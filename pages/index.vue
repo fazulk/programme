@@ -49,7 +49,7 @@ const profile = computed(
         </div>
         <div v-else>
             <Auth />
-            <button @click="login">Log in</button>
+            <button @click="login">Sign in with Github</button>
         </div>
 
     </div>
