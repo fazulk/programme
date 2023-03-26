@@ -1,55 +1,56 @@
-<script lang="ts" setup>
-const graphql = useStrapiGraphQL()
+<script setup lang="ts">
+const user = useSupabaseUser()
 
-interface Products {
-  data: {
-    products: {
-      data: [
-        {
-          attributes: {
-            Name: string
-            Price: string
-          }
-        }
-      ]
+const supabase = useSupabaseAuthClient();
+
+
+const login = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+    });
+
+    if (error) {
+        console.error(error);
     }
-  }
-}
+};
 
-const { data: products, refresh } = useAsyncData('products', () =>
-  graphql<Products>(`
-    query {
-      products {
-        data {
-          attributes {
-            Name
-            Price
-          }
-        }
-      }
+
+const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+        console.error(error);
+        return;
     }
-  `),
-)
 
-const { data: counter1 } = await useAsyncData('counter1', () =>
-  $fetch('/api/counter'),
-)
+    await navigateTo('/');
+};
+
+const name = computed(
+    () => user.value?.user_metadata.full_name
+);
+const profile = computed(
+    () => user.value?.user_metadata.avatar_url
+);
 </script>
-
+        
 <template>
-  <div>
-    <div>
-      Updated Nuxt!<br>
-      <span class="text-xl">counter: {{ counter1 }}</span><br>
-      <ol>
-        <li v-for="(r, i) in products?.data.products.data" :key="i">
-          {{ r.attributes.Name }} : <span class="font-bold">{{ r.attributes.Price }}</span>
-        </li>
-      </ol>
+    <div class="container" style="padding: 50px 0 100px 0">
+        <div v-if="user" class="rounded p-3 flex items-center space-x-3 bg-white">
+            <img class="rounded-full w-12 h-12 border-2 border-blue-400" :src="profile" />
+            <div class="text-right">
+                <div class="font-medium">{{ name }}</div>
+                <button @click="logout" class="text-sm underline text-slate-500">
+                    Log out
+                </button>
+            </div>
+
+            <Products/>
+        </div>
+        <div v-else>
+            <Auth />
+            <button @click="login">Log in</button>
+        </div>
+
     </div>
-    <br>
-    <button @click.prevent="refresh()">
-      Refresh
-    </button>
-  </div>
 </template>

@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/strapi',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/supabase'  
   ],
 
   // typescript: {
