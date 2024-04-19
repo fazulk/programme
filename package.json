@@ -2,6 +2,9 @@
   "name": "programme",
   "version": "1.0.2",
   "private": true,
+  "author": {
+    "name": "jif"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
